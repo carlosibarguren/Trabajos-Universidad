@@ -1,0 +1,262 @@
+.app-container {
+    display: flex;
+    min-height: 100vh;
+  }
+  
+  .menu {
+    width: 200px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    flex-shrink: 0;
+  }
+  
+  .menu-logo {
+    width: 80px;
+  }
+  
+  .menu-options {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+  }
+  
+  .menu-option {
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .menu-option.active {
+    background-color: #ddd;
+  }
+  
+  .content {
+    flex: 1;
+    padding: 20px;
+    background-color: #fff;
+  }
+  
+  .welcome {
+    text-align: center;
+  }
+  
+  .welcome h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .welcome img {
+    width: 300px;
+  }
+  
+  .container {
+    margin-top: 20px;
+  }
+  
+  .listado {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .listado th,
+  .listado td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .form {
+    margin-top: 20px;
+  }
+  
+  .form table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .form th,
+  .form td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .table-options {
+    margin-top: 20px;
+  }
+  
+  .table-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+  }
+  
+  .table-options {
+    margin-top: 20px;
+  }
+  
+  .table-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+
+  button {
+    margin:10px;
+    background-color: white;
+    color: black;
+    border-radius: 10em;
+    font-size: 17px;
+    font-weight: 600;
+    padding: 1em 2em;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    border: 1px solid black;
+    box-shadow: 0 0 0 0 black;
+  }
+  
+  button:hover {
+    transform: translateY(-4px) translateX(-2px);
+    box-shadow: 2px 5px 0 0 black;
+  };
+  
+  button:active {
+    transform: translateY(2px) translateX(1px);
+    box-shadow: 0 0 0 0 black;
+  };
+  
+  .table-button {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #f2f2f2;
+    cursor: pointer;
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .table-button.active {
+    background-color: #ddd;
+  }
+  
+  .back-button {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #f2f2f2;
+    cursor: pointer;
+  }
+  
+  .back-button:hover {
+    background-color: #ddd;
+  }
+  
+  .input {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .aceptar-button {
+    padding: 8px 16px;
+    font-size: 14px;
+    background-color: #f2f2f2;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .aceptar-button:hover {
+    background-color: #ddd;
+  }
+  
+  .editar-button {
+    padding: 8px 16px;
+    font-size: 14px;
+    background-color: #f2f2f2;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .editar-button:hover {
+    background-color: #ddd;
+  }
+  .inputbox {
+    position: relative;
+    width: 196px;
+  }
+  
+  .inputbox input {
+    position: relative;
+    width: 100%;
+    padding: 20px 10px 10px;
+    background: transparent;
+    outline: none;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+    border: none;
+    color: white; /* Cambiar el color del texto dentro del input a blanco */
+    font-size: 1em;
+    letter-spacing: 0.05em;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    z-index: 10;
+  }
+  
+  .inputbox span {
+    position: absolute;
+    left: 0;
+    padding: 20px 10px 10px;
+    font-size: 1em;
+    color: #8f8f8f;
+    letter-spacing: 00.05em;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    pointer-events: none;
+  }
+  
+  .inputbox input:valid ~span,
+  .inputbox input:focus ~span {
+      color:black; /* Cambiar el color del borde y del texto del span a negro */
+      -webkit-transform: translateX(-10px) translateY(-34px);
+      -ms-transform: translateX(-10px) translateY(-34px);
+      transform: translateX(-10px) translateY(-34px);
+      font-size:0.75em; 
+  }
+  
+  .inputbox i {
+      position:absolute; 
+      left:0; 
+      bottom:0; 
+      width:100%; 
+      height:2px; 
+      background:black; /* Cambiar el color de fondo del i a negro */
+      border-radius:4px; 
+      -webkit-transition:.5s; 
+      transition:.5s; 
+      pointer-events:none; 
+      z-index:9
+  }
+  
+  .inputbox input:valid ~i,
+  .inputbox input:focus ~i {
+    height: 44px;
+  }
+  
+  .inputbox input[type="date"] {
+    color: transparent;
+  }
+  
+  .inputbox input[type="date"]:focus {
+    color: white;
+  }
+  .inputbox input[type="date"].has-value {
+    color: white;
+  }
+  

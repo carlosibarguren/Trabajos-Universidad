@@ -1,0 +1,103 @@
+.vuelos-crear-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .vuelos-crear-title {
+    font-weight: bold;
+  }
+  
+  .vuelos-crear-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 600px;
+    gap: 20px;
+  }
+  
+  .vuelos-crear-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex-basis: 45%;
+  }
+  
+  .vuelos-crear-label {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .vuelos-crear-input {
+    padding: 8px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .vuelos-crear-btn-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .vuelos-crear-btn {
+    padding: 10px 20px;
+    background-color: #002e5d;
+    color: #fff;
+    width: 100px;
+    border: none;
+    align-self: center;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .vuelos-crear-btn:hover {
+    background-color: #001f40;
+  }
+  
+  .vuelos-crear-message {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .vuelos-crear-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .vuelos-crear-list li {
+    font-weight: normal;
+    margin-bottom: 5px;
+  }
+  
+  .vuelos-crear-btn-center {
+    padding: 10px 20px;
+    background-color: #002e5d;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+    width: 100%;
+  }
+  
+  .vuelos-crear-btn-center:hover {
+    background-color: #001f40;
+  }
+
+  .vuelos-crear-back-button {
+    padding: 10px 20px;
+    align-self:flex-end;
+    background-color: #181818;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .vuelos-crear-back-button:hover{
+    background-color: #272727;
+  }

@@ -1,0 +1,62 @@
+.vuelos-eliminar-container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .vuelos-eliminar-title {
+    margin-top: 50px;
+    margin-bottom: 125px;
+  }
+  
+  .vuelos-eliminar-form {
+    display: flex;
+    align-items: center;
+  }
+  
+  .vuelos-eliminar-label {
+    font-size: 16px;
+    margin-right: 10px;
+  }
+  
+  .vuelos-eliminar-input {
+    flex: 1;
+    width: 200px;
+    height: 30px;
+    margin-right: 10px;
+    padding: 5px;
+  }
+  
+  .vuelos-eliminar-btn {
+    padding: 10px 20px;
+    background-color: #002e5d;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .vuelos-eliminar-btn:hover {
+    background-color: #001f40;
+  }
+  
+  .vuelos-eliminar-message {
+    font-size: 16px;
+    font-style: italic;
+    margin-top: 50px;
+  }
+
+  .vuelos-eliminar-back-button {
+    padding: 10px 20px;
+    align-self:flex-end;
+    background-color: #181818;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .vuelos-eliminar-back-button:hover{
+    background-color: #272727;
+  }

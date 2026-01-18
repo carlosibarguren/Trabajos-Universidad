@@ -1,0 +1,90 @@
+.pasajeros-crear-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 250px;
+    padding: 20px;
+  }
+  
+  .pasajeros-crear-title {
+    font-weight: bold;
+  }
+  
+  .pasajeros-crear-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 600px;
+    gap: 20px;
+  }
+  
+  .pasajeros-crear-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex-basis: 45%;
+  }
+  
+  .pasajeros-crear-label {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .pasajeros-crear-input {
+    padding: 8px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .pasajeros-crear-btn-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .pasajeros-crear-btn {
+    padding: 10px 20px;
+    background-color: #002e5d;
+    color: #fff;
+    width: 100px;
+    border: none;
+    align-self: center;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .pasajeros-crear-btn:hover {
+    background-color: #001f40;
+  }
+  
+  .pasajeros-crear-message {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .pasajeros-crear-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .pasajeros-crear-list li {
+    font-weight: normal;
+    margin-bottom: 5px;
+  }
+  
+  .pasajeros-crear-btn-center {
+    padding: 10px 20px;
+    background-color: #002e5d;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+    width: 100%;
+  }
+  
+  .pasajeros-crear-btn-center:hover {
+    background-color: #001f40;
+  }

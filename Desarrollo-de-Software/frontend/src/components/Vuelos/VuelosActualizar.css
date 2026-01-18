@@ -1,0 +1,56 @@
+.vuelos-actualizar-title {
+    text-align: center;
+  }
+  
+  .vuelos-actualizar-form {
+    text-align: center;
+  }
+  
+  .vuelos-actualizar-message {
+    text-align: center;
+    font-style: italic;
+    }
+  
+  .vuelos-actualizar-error {
+    text-align: center;
+    font-style: italic;
+  }
+  
+  .vuelos-actualizar-form input[type="number"],
+  .vuelos-actualizar-form input[type="text"],
+  .vuelos-actualizar-form input[type="date"] {
+    width: 100px;
+    padding: 8px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .vuelos-actualizar-form button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #002e5d;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+    width: 120px;
+  }
+  
+  .vuelos-actualizar-form button[type="submit"]:hover {
+    background-color: #001f40;
+  }
+
+  .vuelos-actualizar-back-button {
+    padding: 10px 20px;
+    background-color: #181818;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .vuelos-actualizar-back-button:hover{
+    background-color: #272727;
+  }
