@@ -1,0 +1,151 @@
+"-------------------------------------VARIABLES TEMPORALES------------------------------------"
+
+| hotel1 vuelo1 paqueteHotelero1 paqueteViaCrucero1 camarote1 camarote2 camarote3 paquete1 
+	booking paqueteViaCrucero2 paqueteHotelero2 |
+
+
+
+"------------------------------------ASIGNACION DE VALORES------------------------------------"
+"                                    (Divididos por Clase)                                    "
+
+"............................................................................................."
+								               "Datos Hotel"
+"............................................................................................."
+
+hotel1 := Hotel new.
+hotel1 nombreHotel: 'Four Seasons'; categoriaHotel: '***'; cantHab: 10; precioHab: 200.33.
+
+"............................................................................................."
+                                       "Datos Vuelo"
+"............................................................................................."
+
+vuelo1 := Vuelo new.
+vuelo1 nombreCompañiaAerea: 'Latam'; tiempoVuelo: 5.6.
+
+"............................................................................................."
+                                     "Datos Camarote"
+"............................................................................................."
+
+camarote1 := Camarote new.
+camarote1 numCamarote: 7; categoriaCamarote: 'Turista'; precioCamarote: 300.50; reservacionCamarote: false.
+
+camarote2 := Camarote new.
+camarote2 numCamarote: 6; categoriaCamarote: 'Turista'; precioCamarote: 30.50; reservacionCamarote: false.
+
+camarote3 := Camarote new.
+camarote3 numCamarote: 8; categoriaCamarote: 'Turista'; precioCamarote: 3000.50; reservacionCamarote: false.
+
+"............................................................................................."
+                                        "Datos Paquete"
+"............................................................................................."
+
+paquete1 := Paquete new.
+paquete1 nombrePaquete: 'Combo Latinoamerica'; ciudadOrigen: 'Cordoba'; ciudadDestino: 'Brasilia'; cantidadDias: 6; precioBase: 406.64.
+
+"............................................................................................."
+                                   "Datos Paquete Hotelero"
+"............................................................................................."
+
+paqueteHotelero1 := PaqueteHotelero new.
+paqueteHotelero1 nombrePaquete: 'Combo Europa'; precioBase: 300.0; hotel: hotel1; vuelo: vuelo1.
+
+paqueteHotelero2 := PaqueteHotelero new.
+paqueteHotelero2 nombrePaquete: 'Combo Europa'; precioBase: 500.0; hotel: hotel1; vuelo: vuelo1.
+
+"............................................................................................."
+                                   "Datos Paquete Via Crucero"
+"............................................................................................."
+
+paqueteViaCrucero1 := PaqueteViaCrucero new.
+paqueteViaCrucero1 nombreBarco: 'Navio'; cantidadDias: 6; precioBase: 300; ciudadOrigen: 'Mar del Plata'.
+
+paqueteViaCrucero1 camarotes add: camarote1.
+paqueteViaCrucero1 camarotes add: camarote2.
+paqueteViaCrucero1 camarotes add: camarote3.
+
+paqueteViaCrucero2 := PaqueteViaCrucero new.
+paqueteViaCrucero2 nombrePaquete: 'Combo Oceania'; nombreBarco: 'Aristoteles'; cantidadDias: 6; precioBase: 300; ciudadOrigen: 'Mar del Plata'.
+
+paqueteViaCrucero2 camarotes add: camarote1.
+paqueteViaCrucero2 camarotes add: camarote2.
+paqueteViaCrucero2 camarotes add: camarote3.
+
+"............................................................................................."
+                                        "Datos Booking"
+"............................................................................................."
+
+booking := Booking new.
+
+
+
+
+"-----------------------------------------TRANSCRIPT-----------------------------------------"
+"                                    (Divididos por Clase)                                   "
+
+Transcript clear.
+
+"............................................................................................."
+								               "Datos Hotel"
+"............................................................................................."
+
+Transcript show: '- HOTEL -'; cr.
+Transcript show: hotel1; cr.
+Transcript show: 'La cantidad de estrellas son: ', hotel1 cantidadEstrellas asString; cr.
+Transcript show: '-----------------------------------------------------------------------------------'; cr.
+
+"............................................................................................."
+                                       "Datos Vuelo"
+"............................................................................................."
+
+Transcript show: '- VUELO -'; cr.
+Transcript show: vuelo1; cr.
+Transcript show: '-----------------------------------------------------------------------------------'; cr.
+
+"............................................................................................."
+                                     "Datos Camarote"
+"............................................................................................."
+
+Transcript show: '- CAMAROTE -'; cr.
+Transcript show: camarote1; cr.
+Transcript show: '-----------------------------------------------------------------------------------'; cr.
+
+"............................................................................................."
+                                        "Datos Paquete"
+"............................................................................................."
+
+Transcript show: '- PAQUETE -'; cr.
+Transcript show: paquete1; cr.
+Transcript show: '-----------------------------------------------------------------------------------'; cr.
+
+"............................................................................................."
+                                   "Datos Paquete Hotelero"
+"............................................................................................."
+
+Transcript show: '- PAQUETE HOTELERO -'; cr.
+Transcript show: paqueteHotelero1.
+Transcript show: 'El costo final del paquete es: $', paqueteHotelero1 calcularCosto asString; cr.
+Transcript show: '-----------------------------------------------------------------------------------'; cr.
+
+"............................................................................................."
+                                   "Datos Paquete Via Crucero"
+"............................................................................................."
+
+Transcript show: '- PAQUETE VIA CRUCERO -'; cr.
+Transcript show: 'El costo final del paquete es: $', paqueteViaCrucero1 calcularCosto asString; cr.
+Transcript show: 'La cantidad de camarotes disponibles en la categoria dada son: ', (paqueteViaCrucero1 cantidadCamarotesDisponibles: 'Turista') asString; cr.
+Transcript show: '¿Hay algun camarote libre de la categoria dada? ', (paqueteViaCrucero1 camaroteLibre: 'Turista') asString; cr.
+Transcript show: '-----------------------------------------------------------------------------------'; cr.
+
+"............................................................................................."
+                                        "Datos Booking"
+"............................................................................................."
+
+Transcript show: '- PAQUETE BOOKING -'; cr.
+Transcript show: '¿El Paquete se agregó correctamente? ', (booking addPaquete: paqueteHotelero1) asString; cr.
+Transcript show: '¿El Paquete se agregó correctamente? ', (booking addPaquete: paqueteHotelero2) asString; cr.
+Transcript show: '¿El Paquete se agregó correctamente? ', (booking addPaquete: paqueteViaCrucero1) asString; cr.
+Transcript show: '¿El Paquete se agregó correctamente? ', (booking addPaquete: paqueteViaCrucero2) asString; cr.
+Transcript show: 'El Monto que recaudara la agencia si vende todos los paquetes es: $', booking calcularMontoTotalEstimado asString; cr.
+Transcript show: 'La colección con los cruceros que cumplen las condiciones dadas es: ', (booking crucerosDisponibles: 'Mar del Plata' categoría: 'Turista') asString; cr.
+Transcript show: 'Datos del primer paquete dentro del presupuesto ='; cr.
+Transcript show: (booking paquetesDentroDelPresupuesto: 999999999); cr.

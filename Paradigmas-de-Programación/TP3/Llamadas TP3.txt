@@ -1,0 +1,34 @@
+%Punto 1
+?- punto1(2).
+false.
+
+%Punto 2
+
+?- punto2(Cantidad).
+Cantidad = 2.
+
+%Punto 3
+
+?- punto3(DNI, Dia, Mes, Anio).
+DNI = 48555785,
+Dia = 12,
+Mes = 5,
+Anio = 2021 ;
+DNI = 28965856,
+Dia = 11,
+Mes = 6,
+Anio = 2019 ;
+false.
+
+?- punto3(48555785, 12, 5, 2021).
+true.
+
+%Punto 4 
+
+?- punto4(Lista).
+Lista = ['ana crisol', 'juan perez'].
+
+%Punto 5
+
+?- punto5(['AA582GE','AB745HF'], Lista).
+Lista = [(1, 'AA582GE', 3), (2, 'AB745HF', 2), (3, 'AA582GE', 1), (4, 'AA582GE', 0)].
