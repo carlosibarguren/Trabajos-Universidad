@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>JEX Reviews – DApp</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <div class="app-card">
+      <header class="app-header">
+        <img src="jex-logo.png" alt="JEX" />
+        <div>
+          <h1>JEX Reviews</h1>
+          <p>Gestión de calificaciones on-chain entre trabajadores y empleadores.</p>
+        </div>
+      </header>
+
+      <div class="wallet-bar">
+      <div class="wallet-info">
+        <div>
+          <strong>Wallet:</strong>
+          <span id="accountSpan">No conectada</span>
+        </div>
+        <div class="wallet-role">
+          <strong>Rol:</strong>
+          <span id="userRoleBadge">Sin seleccionar</span>
+        </div>
+      </div>
+      <div class="wallet-actions">
+        <!-- SOLO el botón de conectar -->
+        <button class="btn btn-primary btn-sm" id="connectButton">
+          Conectar MetaMask
+        </button>
+      </div>
+    </div>
+
+
+      <!-- Pantalla LANDING / HERO -->
+      <section id="screen-landing" class="screen active">
+        <div class="hero">
+          <div class="hero-text">
+            <h2 class="hero-title">Elegí tu tipo de usuario</h2>
+            <p class="hero-subtitle">
+              JEX te permite registrar y visualizar reseñas on-chain. Seleccioná si vas a operar
+              como trabajador, empleador o moderador para ver las herramientas correspondientes.
+            </p>
+            <div class="hero-actions">
+              <button class="btn btn-primary" id="openUserTypeModalButton">
+                Seleccionar tipo de usuario
+              </button>
+            </div>
+          </div>
+          <div class="hero-illustration">
+            <!-- Imagen grande de JEX “saludando” al fondo (la reemplazás vos) -->
+            <img src="jex-calificaciones.png" alt="JEX saludando" />
+          </div>
+        </div>
+      </section>
+
+      <!-- Pantalla MENÚ (se muestra luego de elegir rol, para worker/employer) -->
+      <section id="screen-menu" class="screen">
+        <div class="screen-title">
+          <h2>Acciones disponibles</h2>
+          <button class="btn btn-ghost btn-sm" data-goto="screen-landing">← Volver al inicio</button>
+        </div>
+        <p class="screen-subtitle">
+          Según el rol seleccionado, vas a ver opciones para registrar reseñas, consultarlas o
+          moderarlas.
+        </p>
+
+        <div class="menu-grid">
+          <div class="menu-card" id="cardCreate">
+            <h2>Registrar reseña</h2>
+            <p>Crear una reseña on-chain para un evento puntual entre trabajador y empleador.</p>
+            <div class="actions-row">
+              <button class="btn btn-primary btn-sm" data-goto="screen-create">Ir a registrar</button>
+            </div>
+          </div>
+
+          <div class="menu-card" id="cardView">
+            <h2>Visualizar reseñas</h2>
+            <p>Buscar reseñas emitidas o recibidas para una dirección, con filtros por rating mínimo.</p>
+            <div class="actions-row">
+              <button class="btn btn-secondary btn-sm" data-goto="screen-view">Ir a visualizar</button>
+            </div>
+          </div>
+
+          <div class="menu-card" id="cardAdmin">
+            <h2>Herramientas de moderador</h2>
+            <p>Validar, publicar o invalidar reseñas, y ver datos globales del contrato.</p>
+            <div class="actions-row">
+              <button class="btn btn-secondary btn-sm" data-goto="screen-admin">Abrir herramientas</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pantalla CREAR -->
+      <section id="screen-create" class="screen">
+        <div class="screen-title">
+          <h2>
+            Registrar reseña
+            <span id="roleChip" class="role-chip">Modo: Trabajador → Empleador</span>
+          </h2>
+          <button class="btn btn-ghost btn-sm" data-goto="screen-menu">← Volver al menú</button>
+        </div>
+
+        <p class="screen-subtitle">
+          La cuenta conectada en MetaMask será el <strong>reviewer</strong>. El modo elegido define
+          si estás calificando como trabajador o como empleador.
+        </p>
+
+        <div class="form-grid">
+          <div>
+            <label id="reviewedLabel" for="reviewedInput">
+              Address a calificar (empleador)
+            </label>
+            <input type="text" id="reviewedInput" placeholder="0x..." />
+          </div>
+
+          <div>
+            <label>Rating</label>
+            <div class="rating-widget">
+              <button type="button" class="btn btn-secondary btn-sm" id="ratingMinus">–</button>
+              <div class="rating-stars" id="ratingStars">
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+              </div>
+              <button type="button" class="btn btn-secondary btn-sm" id="ratingPlus">+</button>
+              <span class="rating-number" id="ratingNumber">0.0 / 5</span>
+            </div>
+          </div>
+
+          <div>
+            <label for="eventIdInput">ID de evento (eventId)</label>
+            <input type="number" id="eventIdInput" min="0" />
+          </div>
+
+          <div>
+            <label for="commentInput">Comentario</label>
+            <textarea id="commentInput" placeholder="Comentario fuera de cadena (simulamos IPFS)"></textarea>
+          </div>
+        </div>
+
+        <div class="actions-row">
+          <button class="btn btn-primary btn-sm" id="createReviewButton">Enviar reseña</button>
+        </div>
+        <p id="createStatus" class="status"></p>
+      </section>
+
+      <!-- Pantalla VER -->
+      <section id="screen-view" class="screen">
+        <div class="screen-title">
+          <h2>Visualizar reseñas</h2>
+          <button class="btn btn-ghost btn-sm" data-goto="screen-menu">← Volver al menú</button>
+        </div>
+
+        <p class="screen-subtitle">
+          Podés ver las reseñas <strong>recibidas</strong> o <strong>emitidas</strong> por una address.
+          Si dejás el campo vacío, se usa la cuenta conectada.
+        </p>
+
+        <div class="form-grid">
+          <div>
+            <label for="searchAddressInput">Address del usuario</label>
+            <input type="text" id="searchAddressInput" placeholder="0x... (vacío = mi wallet)" />
+          </div>
+
+          <div>
+            <label for="typeSelect">Tipo de reseñas</label>
+            <select id="typeSelect">
+              <option value="received">Recibidas</option>
+              <option value="given">Emitidas</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="minRatingInput">Rating mínimo</label>
+            <input type="number" id="minRatingInput" min="1" max="5" value="1" />
+          </div>
+        </div>
+
+        <div class="actions-row">
+          <button class="btn btn-secondary btn-sm" id="searchButton">Buscar reseñas</button>
+        </div>
+        <p id="searchStatus" class="status"></p>
+
+        <div style="overflow-x:auto; margin-top:8px;">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Reviewer</th>
+                <th>Reviewed</th>
+                <th>Rating</th>
+                <th>Evento</th>
+                <th>Estado</th>
+                <th>Fecha</th>
+                <th>Comentario</th>
+              </tr>
+            </thead>
+            <tbody id="resultsTbody">
+              <!-- Se llena por JS -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Pantalla ADMIN / HERRAMIENTAS -->
+      <section id="screen-admin" class="screen">
+        <div class="screen-title">
+          <h2>Herramientas de moderador</h2>
+          <button class="btn btn-ghost btn-sm" data-goto="screen-menu">← Volver al menú</button>
+        </div>
+        <p class="screen-subtitle">
+          Pantalla para probar funciones extra del contrato como validación, publicación e
+          invalidación de reseñas; además de datos globales.
+        </p>
+
+        <div class="admin-grid">
+          <div class="admin-card">
+            <h3>Datos globales</h3>
+            <p><strong>Moderator:</strong> <span id="moderatorSpan">—</span></p>
+            <p><strong>nextReviewId:</strong> <span id="nextReviewIdSpan">—</span></p>
+            <div class="actions-row" style="justify-content:flex-start;">
+              <button class="btn btn-secondary btn-sm" id="loadGlobalButton">Refrescar</button>
+            </div>
+            <p id="globalStatus" class="status"></p>
+          </div>
+
+          <div class="admin-card">
+            <h3>Promedio de rating</h3>
+            <label for="avgAddressInput">Address</label>
+            <input type="text" id="avgAddressInput" placeholder="0x... (vacío = mi wallet)" />
+            <div class="actions-row" style="justify-content:flex-start;">
+              <button class="btn btn-secondary btn-sm" id="getAverageButton">Calcular promedio</button>
+            </div>
+            <p><strong>Resultado:</strong> <span id="averageResultSpan">—</span></p>
+            <p id="averageStatus" class="status"></p>
+          </div>
+
+          <div class="admin-card">
+            <h3>Moderador – flujo de reseñas</h3>
+            <label for="modReviewIdInput">ID de reseña</label>
+            <input type="number" id="modReviewIdInput" min="0" />
+            <div class="actions-row" style="justify-content:flex-start; flex-wrap:wrap; gap:8px;">
+              <button class="btn btn-secondary btn-sm" id="validateButton">Validar</button>
+              <button class="btn btn-secondary btn-sm" id="publishButton">Publicar</button>
+              <button class="btn btn-primary btn-sm" id="invalidateButton">Invalidar</button>
+            </div>
+            <p class="status" id="moderatorStatus"></p>
+          </div>
+        </div>
+
+        <!-- Listados para moderador -->
+        <div style="margin-top:16px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; gap:8px;">
+            <h3 style="margin:0;">Reseñas a validar (estado Created)</h3>
+            <button class="btn btn-secondary btn-sm" id="refreshModeratorListsButton">
+              Actualizar reseñas
+            </button>
+          </div>
+
+          <div style="overflow-x:auto; margin-top:6px;">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Reviewer</th>
+                  <th>Reviewed</th>
+                  <th>Rating</th>
+                  <th>Evento</th>
+                  <th>Estado</th>
+                  <th>Fecha</th>
+                  <th>Comentario</th>
+                </tr>
+              </thead>
+              <tbody id="moderatorToValidateTbody">
+                <!-- Se llena por JS (Created) -->
+              </tbody>
+            </table>
+          </div>
+
+          <h3 style="margin-top:16px;">Reseñas publicadas / invalidadas</h3>
+          <div style="overflow-x:auto; margin-top:6px;">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Reviewer</th>
+                  <th>Reviewed</th>
+                  <th>Rating</th>
+                  <th>Evento</th>
+                  <th>Estado</th>
+                  <th>Fecha</th>
+                  <th>Comentario</th>
+                </tr>
+              </thead>
+              <tbody id="moderatorHistoryTbody">
+                <!-- Se llena por JS (Published / Invalidated / Validated si querés mostrarla también) -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- MODAL ELECCIÓN DE TIPO DE USUARIO -->
+  <div id="userTypeModal" class="modal-backdrop">
+    <div class="modal-card user-type-modal">
+      <h3>Elegí tu tipo de usuario</h3>
+      <p class="modal-body">
+        Seleccioná cómo querés operar en esta sesión. Podés cambiarlo en cualquier momento.
+      </p>
+      <div class="user-type-options">
+        <button class="user-type-card" id="userTypeWorker">
+          <img src="jex-worker.png" alt="JEX trabajador" />
+          <div class="user-type-text">
+            <span class="user-type-title">Trabajador</span>
+            <span class="user-type-desc">Registrás reseñas hacia empleadores y consultás tu historial.</span>
+          </div>
+        </button>
+
+        <button class="user-type-card" id="userTypeEmployer">
+          <img src="jex-employer.png" alt="JEX empleador" />
+          <div class="user-type-text">
+            <span class="user-type-title">Empleador</span>
+            <span class="user-type-desc">Calificás trabajadores y consultás reseñas de tus eventos.</span>
+          </div>
+        </button>
+
+        <button class="user-type-card" id="userTypeModerator">
+          <img src="jex-moderator.png" alt="JEX moderador" />
+          <div class="user-type-text">
+            <span class="user-type-title">Moderador</span>
+            <span class="user-type-desc">Validás, publicás o invalidás reseñas y gestionás el contrato.</span>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ethers v5 desde CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
